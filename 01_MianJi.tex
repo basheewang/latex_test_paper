@@ -452,4 +452,37 @@
 		\end{asy}
 	\end{minipage}
 \end{figure}
+\vspace{1cm}
+\section{求解下列各图中阴影部分的面积}
+\begin{figure}[ht]
+	\centering
+	\begin{minipage}[b]{0.45\textwidth}
+		如下图，已知小正方形的边长为$6cm$,大正方形边长为$10cm$,求阴影部分三角形的面积。\\
+		\begin{asy}
+			unitsize(0.4 cm);
+			import patterns;
+			add("bengal",hatch(0.8mm,blue));
+			pair A,B,C,D,E,F,G,H;
+			A=(0,0);B=(0,6);C=(6,6);D=(6,0);E=(16,0);F=(16,10);G=(6,10);
+			draw(A--B--C--D--A--F--E--D--G--F);
+			Label AD=Label("$6cm$",align=(0,0),position=MidPoint,filltype=Fill(white));
+			draw((0,-0.5)--(6,-0.5),L=AD,arrow=Arrows(),bar=Bars);
+			Label DE=Label("$10cm$",align=(0,0),position=MidPoint,filltype=Fill(white));
+			draw((6,-0.5)--(16,-0.5),L=DE,arrow=Arrows(),bar=Bars);
+			H=intersectionpoint(A..F,C..D);
+			draw(E--H);
+			fill(A--H--E--A--cycle,pattern("bengal"));
+		\end{asy}
+	\end{minipage}
+	\qquad
+	\begin{minipage}[b]{0.45\textwidth}
+		\begin{asy}
+			unitsize(1cm);
+			import patterns;
+			add("bengal",hatch(0.8mm,blue));
+			dot((0,0));
+		\end{asy}
+	\end{minipage}
+\end{figure}
+
 \end{document}
