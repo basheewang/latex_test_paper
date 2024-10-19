@@ -454,165 +454,269 @@
 \end{figure}
 \vspace{1cm}
 \section{求解下列各图中阴影部分的面积}
-\begin{figure}[ht]
-	\centering
-	\begin{minipage}[b]{0.45\textwidth}
-		如下图，已知小正方形的边长为$6cm$,大正方形边长为$10cm$,求阴影部分三角形的面积。\\
-		\begin{asy}
-			unitsize(0.4 cm);
-			import patterns;
-			add("bengal",hatch(0.8mm,blue));
-			pair A,B,C,D,E,F,G,H;
-			A=(0,0);B=(0,6);C=(6,6);D=(6,0);E=(16,0);F=(16,10);G=(6,10);
-			draw(A--B--C--D--A--F--E--D--G--F);
-			Label AD=Label("$6cm$",align=(0,0),position=MidPoint,filltype=Fill(white));
-			draw((0,-0.5)--(6,-0.5),L=AD,arrow=Arrows(),bar=Bars);
-			Label DE=Label("$10cm$",align=(0,0),position=MidPoint,filltype=Fill(white));
-			draw((6,-0.5)--(16,-0.5),L=DE,arrow=Arrows(),bar=Bars);
-			H=intersectionpoint(A..F,C..D);
-			draw(E--H);
-			fill(A--H--E--A--cycle,pattern("bengal"));
-		\end{asy}
-	\end{minipage}
-	\qquad
-	\begin{minipage}[b]{0.48\textwidth}
-    下图的长方形长为$15cm$,宽为$8cm$,已知阴影部分的面积为$68cm^2$，求四边形$EFGO$的面积。\\
-		\begin{asy}
-			unitsize(0.48 cm);
-			import patterns;
-			add("bengal",hatch(0.8mm,blue));
-      pair A,B,C,D,E,F,G,O;
-      A=(0,8);B=(0,0);C=(15,0);D=(15,8);F=(4,0);
-      draw(A--B--C--D--A--C);draw(A--F--D--B);
-      label("A",A,W);label("B",B,W);
-      label("C",C,RightSide);label("D",D,RightSide);label("F",F,S);
-      E=intersectionpoint(A..F,B..D);
-      G=intersectionpoint(A..C,D..F);
-      O=intersectionpoint(A..C,B..D);
-      label("E",E,1.2S+0.2W);label("G",G,S);label("O",O,S);
-      fill(A--B--E--A--cycle,pattern("bengal"));
-      fill(A--O--D--A--cycle,pattern("bengal"));
-      fill(C--G--D--C--cycle,pattern("bengal"));
-		\end{asy}
-	\end{minipage}
-\end{figure}
-\vspace{1cm}
-\begin{figure}[ht]
-  \centering
-  \begin{minipage}[b]{0.45\textwidth}
-    $\star$已知正方形 的边长为$4cm$,求阴影部分的面积。\\
-    \begin{asy}
-      unitsize(1.3 cm);
-      import patterns;
-      add("bengal",hatch(0.8mm,blue));
-      pair A,B,C,D,E;
-      A=(0,0);B=(4,0);C=(4,4);D=(0,4);
-      draw(A--B--C--D--A);
-			Label BC=Label("$4cm$",align=(0.1,0),position=MidPoint,filltype=Fill(white));
-			draw((4.2,0)--(4.2,4),L=BC,arrow=Arrows(),bar=Bars);
-      path c1=arc(B/2,2,180,0);
-      path c2=arc(D,4,-90,0);
-      draw(c1);draw(c2);
-      pair [] i=intersectionpoints(c1,c2);
-      // dot(i[0],blue);dot(i[1],red);
-      real [] it1=times(c1,i[1].x);
-      real [] it2=times(c2,i[1].x);
-      write(i[1]);
-      path c1t=subpath(c1,it1[0],0);
-      path c2t=subpath(c2,0,it2[0]);
-      // draw(c1t,red,MidArrow);
-      // draw(c2t,red,MidArrow);
-      fill(c1t--c2t--cycle,pattern("bengal"));
-    \end{asy}
-  \end{minipage}
-  \qquad
-  \begin{minipage}[b]{0.45\textwidth}
-    $\star$已知正方形 的边长为$4cm$,求阴影部分的面积。\\
-    \begin{asy}
-      unitsize(1.3 cm);
-      import patterns;
-      add("bengal",hatch(0.8mm,blue));
-      pair A,B,C,D,O;
-      A=(0,0);B=(4,0);C=(4,4);D=(0,4);O=(2,2);
-      draw(A--B--C--D--A);
-			Label BC=Label("$4cm$",align=(0.1,0),position=MidPoint,filltype=Fill(white));
-			draw((4.2,0)--(4.2,4),L=BC,arrow=Arrows(),bar=Bars);
-      path c0=circle(O,2);
-      path c1=arc(B,4,180,90);
-      path c2=arc(D,4,-90,0);
-      draw(c0);draw(c1);draw(c2);
-      // C0 and C1 intersect at point E & F
-      pair [] ef=intersectionpoints(c0,c1);
-      pair E=ef[0];
-      pair F=ef[1];
-      // get time of E & F at C1
-      real [] e1t=times(c1,E.x);
-      real [] f1t=times(c1,F.x);
-      // define the arc of E & F on C1
-      path c1ef=subpath(c1,e1t[0],f1t[0]);
-      // draw(c1ef,red,MidArrow);
-      real [] e0t=times(c0,E.x);
-      real [] f0t=times(c0,F.x);
-      path c0ef=subpath(c0,4-f0t[0],e0t[0]);
-      // Fil the intersection area of C1 & C0
-      fill(c1ef--c0ef--cycle,pattern("bengal"));
-      // draw(c0ef,red,MidArrow);
+\begin{enumerate}
+	\item 如下图，已知小正方形的边长为$6cm$,大正方形边长为$10cm$,求阴影部分三角形的面积。\\
+	      \begin{figure}[ht]
+		      \raggedleft
+		      \begin{asy}
+			      unitsize(0.4 cm);
+			      import patterns;
+			      add("bengal",hatch(0.8mm,blue));
+			      pair A,B,C,D,E,F,G,H;
+			      A=(0,0);B=(0,6);C=(6,6);D=(6,0);E=(16,0);F=(16,10);G=(6,10);
+			      draw(A--B--C--D--A--F--E--D--G--F);
+			      Label AD=Label("$6cm$",align=(0,0),position=MidPoint,filltype=Fill(white));
+			      draw((0,-0.5)--(6,-0.5),L=AD,arrow=Arrows(),bar=Bars);
+			      Label DE=Label("$10cm$",align=(0,0),position=MidPoint,filltype=Fill(white));
+			      draw((6,-0.5)--(16,-0.5),L=DE,arrow=Arrows(),bar=Bars);
+			      H=intersectionpoint(A..F,C..D);
+			      draw(E--H);
+			      fill(A--H--E--A--cycle,pattern("bengal"));
+		      \end{asy}
+	      \end{figure}
+	\item 下图的长方形长为$15cm$,宽为$8cm$,已知阴影部分的面积为$68cm^2$，求四边形$EFGO$的面积。\\
+	      \begin{figure}[ht]
+		      \raggedleft
+		      \begin{asy}
+			      unitsize(0.48 cm);
+			      import patterns;
+			      add("bengal",hatch(0.8mm,blue));
+			      pair A,B,C,D,E,F,G,O;
+			      A=(0,8);B=(0,0);C=(15,0);D=(15,8);F=(4,0);
+			      draw(A--B--C--D--A--C);draw(A--F--D--B);
+			      label("A",A,W);label("B",B,W);
+			      label("C",C,RightSide);label("D",D,RightSide);label("F",F,S);
+			      E=intersectionpoint(A..F,B..D);
+			      G=intersectionpoint(A..C,D..F);
+			      O=intersectionpoint(A..C,B..D);
+			      label("E",E,1.2S+0.2W);label("G",G,S);label("O",O,S);
+			      fill(A--B--E--A--cycle,pattern("bengal"));
+			      fill(A--O--D--A--cycle,pattern("bengal"));
+			      fill(C--G--D--C--cycle,pattern("bengal"));
+		      \end{asy}
+	      \end{figure}
+	      \newpage
+	\item $\star$已知正方形 的边长为$4cm$,求阴影部分的面积。\\
+	      \begin{figure}[ht]
+		      \raggedleft
+		      \begin{asy}
+			      unitsize(1.3 cm);
+			      import patterns;
+			      add("bengal",hatch(0.8mm,blue));
+			      pair A,B,C,D,E;
+			      A=(0,0);B=(4,0);C=(4,4);D=(0,4);
+			      draw(A--B--C--D--A);
+			      Label BC=Label("$4cm$",align=(0.1,0),position=MidPoint,filltype=Fill(white));
+			      draw((4.2,0)--(4.2,4),L=BC,arrow=Arrows(),bar=Bars);
+			      path c1=arc(B/2,2,180,0);
+			      path c2=arc(D,4,-90,0);
+			      draw(c1);draw(c2);
+			      pair [] i=intersectionpoints(c1,c2);
+			      // dot(i[0],blue);dot(i[1],red);
+			      real [] it1=times(c1,i[1].x);
+			      real [] it2=times(c2,i[1].x);
+			      write(i[1]);
+			      path c1t=subpath(c1,it1[0],0);
+			      path c2t=subpath(c2,0,it2[0]);
+			      // draw(c1t,red,MidArrow);
+			      // draw(c2t,red,MidArrow);
+			      fill(c1t--c2t--cycle,pattern("bengal"));
+		      \end{asy}
+	      \end{figure}
+	\item  $\star$已知正方形 的边长为$4cm$,求阴影部分的面积。\\
+	      \begin{figure}[ht]
+		      \raggedleft
+		      \begin{asy}
+			      unitsize(1.3 cm);
+			      import patterns;
+			      add("bengal",hatch(0.8mm,blue));
+			      pair A,B,C,D,O;
+			      A=(0,0);B=(4,0);C=(4,4);D=(0,4);O=(2,2);
+			      draw(A--B--C--D--A);
+			      Label BC=Label("$4cm$",align=(0.1,0),position=MidPoint,filltype=Fill(white));
+			      draw((4.2,0)--(4.2,4),L=BC,arrow=Arrows(),bar=Bars);
+			      path c0=circle(O,2);
+			      path c1=arc(B,4,180,90);
+			      path c2=arc(D,4,-90,0);
+			      draw(c0);draw(c1);draw(c2);
+			      // C0 and C1 intersect at point E & F
+			      pair [] ef=intersectionpoints(c0,c1);
+			      pair E=ef[0];
+			      pair F=ef[1];
+			      // get time of E & F at C1
+			      real [] e1t=times(c1,E.x);
+			      real [] f1t=times(c1,F.x);
+			      // define the arc of E & F on C1
+			      path c1ef=subpath(c1,e1t[0],f1t[0]);
+			      // draw(c1ef,red,MidArrow);
+			      real [] e0t=times(c0,E.x);
+			      real [] f0t=times(c0,F.x);
+			      path c0ef=subpath(c0,4-f0t[0],e0t[0]);
+			      // Fil the intersection area of C1 & C0
+			      fill(c1ef--c0ef--cycle,pattern("bengal"));
+			      // draw(c0ef,red,MidArrow);
 
-      pair [] gh=intersectionpoints(c0,c2);
-      pair G=gh[0];
-      pair H=gh[1];
-      real [] g2t=times(c2,G.x);
-      real [] h2t=times(c2,H.x);
-      path c2gh=subpath(c2,g2t[0],h2t[0]);
-      // draw(c2gh,red,MidArrow);
-      real [] g0t=times(c0,G.x);
-      real [] h0t=times(c0,H.x);
-      // write(g0t);write(h0t);
-      path c0gh=subpath(c0,4-h0t[0],4+g0t[0]);
-      // draw(c0gh,red,MidArrow);
-      fill(c2gh--c0gh--cycle,pattern("bengal"));
-    \end{asy}
-  \end{minipage}
-\end{figure}
-\vspace{1cm}
-\begin{figure}[ht]
-  \centering
-  \begin{minipage}[b]{0.45\textwidth}
-    \begin{asy}
-      unitsize(1 cm);
-      import patterns;
-      add("bengal",hatch(0.8mm,blue));
-      dot((0,0));
-    \end{asy}
-  \end{minipage}
-  \qquad
-  \begin{minipage}[b]{0.45\textwidth}
-    \begin{asy}
-      unitsize(1 cm);
-      import patterns;
-      add("bengal",hatch(0.8mm,blue));
-      dot((0,0));
-    \end{asy}
-  \end{minipage}
-\end{figure}
-\begin{figure}[ht]
-  \centering
-  \begin{minipage}[b]{0.45\textwidth}
-    \begin{asy}
-      unitsize(1 cm);
-      import patterns;
-      add("bengal",hatch(0.8mm,blue));
-      dot((0,0));
-    \end{asy}
-  \end{minipage}
-  \qquad
-  \begin{minipage}[b]{0.45\textwidth}
-    \begin{asy}
-      unitsize(1 cm);
-      import patterns;
-      add("bengal",hatch(0.8mm,blue));
-      dot((0,0));
-    \end{asy}
-  \end{minipage}
-\end{figure}
+			      pair [] gh=intersectionpoints(c0,c2);
+			      pair G=gh[0];
+			      pair H=gh[1];
+			      real [] g2t=times(c2,G.x);
+			      real [] h2t=times(c2,H.x);
+			      path c2gh=subpath(c2,g2t[0],h2t[0]);
+			      // draw(c2gh,red,MidArrow);
+			      real [] g0t=times(c0,G.x);
+			      real [] h0t=times(c0,H.x);
+			      // write(g0t);write(h0t);
+			      path c0gh=subpath(c0,4-h0t[0],4+g0t[0]);
+			      // draw(c0gh,red,MidArrow);
+			      fill(c2gh--c0gh--cycle,pattern("bengal"));
+		      \end{asy}
+	      \end{figure}
+	\item 已知下图的四边形，长和宽分别是$4cm$和$2cm$,求阴影部分的面积。\\
+	      \begin{figure}[ht]
+		      \raggedleft
+		      \begin{asy}
+			      unitsize(1.5 cm);
+			      import patterns;
+			      add("bengal",hatch(0.8mm,blue));
+			      pair A,B,C,D;
+			      A=(0,0);B=(4,0);C=(4,2);D=(0,2);
+			      draw(A--B--C--D--A--C);
+			      Label BC=Label("$2cm$",align=(0.1,0),position=MidPoint,filltype=Fill(white));
+			      draw((4.1,0)--(4.1,2),L=BC,arrow=Arrows(),bar=Bars);
+			      Label AB=Label("$4cm$",align=(0,0),position=MidPoint,filltype=Fill(white));
+			      draw((0,-0.2)--(4,-0.2),L=AB,arrow=Arrows(),bar=Bars);
+			      path c1=arc((0,1),1,90,-90);
+			      path c2=arc((2,2),2,180,360);
+			      draw(c1);draw(c2);
+			      pair [] i=intersectionpoints(A..C,c1);
+			      pair E=i[1];
+			      real [] e1=times(c1,E.x);
+			      path c1e=subpath(c1,2,e1[1]);
+			      fill(c1e--E--A--cycle,pattern("bengal"));
+			      real [] e2=times(c2,E.x);
+			      path c2e=subpath(c2,e2[0],4);
+			      fill(c2e--C--E--cycle,pattern("bengal"));
+			      path c1ebar=subpath(c1,0,e1[1]);
+			      path c2ebar=subpath(c2,e2[0],1);
+			      fill(c1ebar--c2ebar--cycle,pattern("bengal"));
+		      \end{asy}
+	      \end{figure}
+	      \newpage
+	\item 已知下图长方形的宽为$4cm$，求阴影部分的面积。\\
+	      \begin{figure}[ht]
+		      \raggedleft
+		      \begin{asy}
+			      unitsize(1.1 cm);
+			      import patterns;
+			      add("bengal",hatch(0.8mm,blue));
+			      pair A,B,C,D,O,E,F;
+			      O=(0,0);A=(-2*sqrt(2),-2);B=(2*sqrt(2),-2);C=(2*sqrt(2),2);D=(-2*sqrt(2),2);
+			      draw(A--B--C--D--A);
+			      Label BC=Label("$4cm$",align=(0.1,0),position=MidPoint,filltype=Fill(white));
+			      draw((2*sqrt(2)+0.2,-2)--(2*sqrt(2)+0.2,2),L=BC,arrow=Arrows(),bar=Bars);
+			      path cb=arc((A+B)/2,2*sqrt(2),180,0);
+			      path ct=arc((C+D)/2,2*sqrt(2),180,360);
+			      path co=circle(O,2);
+			      path ci=circle(O,2*sqrt(2)-2);
+			      draw(cb);draw(ct);draw(co);draw(ci);
+			      fill(subpath(ci,0,2)--subpath(ci,2,4)--cycle,pattern("bengal"));
+			      pair [] i=intersectionpoints(cb,ct);
+			      // dot(i[0]);dot(i[1],blue);
+			      path cbt=subpath(cb,0.5,1.5);
+			      path cot=subpath(co,0,2);
+			      fill(cbt--cot--cycle,pattern("bengal"));
+			      path ctb=subpath(ct,1.5,2.5);
+			      path cob=subpath(co,4,2);
+			      fill(ctb--cob--cycle,pattern("bengal"));
+			      // draw(cob,red,MidArrow);
+		      \end{asy}
+	      \end{figure}
+	\item 如下图所示的正方形内有一点$E$，且满足$DE\perp CE$，已知$CE=10cm$,求阴影部分$\triangle BCE$的面积。\\
+	      \begin{figure}[ht]
+		      \raggedleft
+		      \begin{asy}
+			      unitsize(1.3 cm);
+			      import patterns;
+			      import olympiad;
+			      add("bengal",hatch(0.8mm,blue));
+			      pair A,B,C,D,E,F;
+			      A=(0,0);B=(4,0);C=(4,4);D=(0,4);F=(2.5,1);
+			      draw(A--B--C--D--A);
+			      E=foot(D,C,F);
+			      dot(E);
+			      label("A",A,W);label("B",B,RightSide);
+			      label("C",C,RightSide);label("D",D,W);
+			      label("E",E,SW);
+			      draw(D--E--C);draw(E--B);
+			      fill(C--E--B--C--cycle,pattern("bengal"));
+			      draw(rightanglemark(C,E,D));
+			      // draw(circle((2,4),2));
+		      \end{asy}
+	      \end{figure}
+	\item 如下图所示的扇形，已知扇形的半径为$4cm$，$C,D$分别为$OA,OB$的中点，$E,F$为$\arc{AB}$的三等分点，求阴影部分四边形的面积。\\
+	      \begin{figure}[ht]
+		      \raggedleft
+		      \begin{asy}
+			      unitsize(1.2 cm);
+			      import patterns;
+			      import olympiad;
+			      add("bengal",hatch(0.8mm,blue));
+			      pair O,A,B,C,D,E,F;
+			      O=(0,0);A=(4,0);B=(0,4);C=(2,0);D=(0,2);
+			      path c=arc(O,4,90,0);
+			      draw(c);draw(A--O--B);draw(C--D);
+			      F=waypoint(c,1/3);
+			      E=waypoint(c,2/3);
+			      draw(C--E--F--D);
+			      fill(C--E--F--D--C--cycle,pattern("bengal"));
+			      label("O",O,W);label("A",A,RightSide);label("B",B,W);
+			      label("C",C,S);label("D",D,W);
+			      label("E",E,RightSide);label("F",F,N);
+		      \end{asy}
+	      \end{figure}
+	      \newpage
+	\item 下图所示正方形的边长为$4cm$，求阴影部分的面积。\\
+	      \begin{figure}[ht]
+		      \raggedleft
+		      \begin{asy}
+			      unitsize( 2.3 cm );
+			      import patterns;
+			      add("bengal",hatch(0.8mm,blue));
+			      pair A,B,C,D;
+			      A=(0,0);B=(0,2);C=(2,2);D=(2,0);
+			      draw(A--B--C--D--A);
+			      path ca=arc(A,2,90,0);
+			      path cb=arc(D,2,180,90);
+			      path cc=arc(C,2,270,180);
+			      path cd=arc(B,2,-90,0);
+			      draw(ca);draw(cb);draw(cc);draw(cd);
+			      path ca1=subpath(ca,2/3,1/3);
+			      path cb1=subpath(cb,2/3,1/3);
+			      path cc1=subpath(cc,2/3,1/3);
+			      path cd1=subpath(cd,1/3,2/3);
+			      fill(ca1--cb1--cc1--cd1--cycle,pattern("bengal"));
+			      // draw(cd1,red,MidArrow);
+		      \end{asy}
+	      \end{figure}
+	\item Problem Description.
+	      \begin{figure}[ht]
+		      \raggedleft
+		      \begin{asy}
+			      unitsize(1 cm);
+			      import patterns;
+			      add("bengal",hatch(0.8mm,blue));
+			      dot((0,0));
+		      \end{asy}
+	      \end{figure}
+	      % 	\item Problem Description.
+	      % 	      \begin{figure}[ht]
+	      % 		      \raggedleft
+	      % 		      \begin{asy}
+	      % 			      unitsize(1 cm);
+	      % 			      import patterns;
+	      % 			      add("bengal",hatch(0.8mm,blue));
+	      % 			      dot((0,0));
+	      % 		      \end{asy}
+	      % 	      \end{figure}
+\end{enumerate}
 \end{document}
