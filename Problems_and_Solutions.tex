@@ -1,0 +1,449 @@
+\documentclass[12pt,space]{ctexart} %ans
+\usepackage{TestPaperA4}
+% \watermark{60}{6}{14-金融工程-白兔兔} %水印
+\begin{document}\zihao{5}
+% \juemi% 输出绝密
+% \biaoti{七中实验学校初一新生分班（摸底）考试卷}
+\fubiaoti{习题与解答提示}
+% {\heiti 注意事项}：
+% \begin{enumerate}[itemsep=-0.3em,topsep=0pt]
+          %     \item 答卷前，考生务必将自己的姓名和准考证号填写在答题卡上。
+          %     \item 回答选择题时，选出每小题答案后，用铅笔把答题卡对应题目的答案标号涂黑。如需改动，用橡皮擦干净后，再选涂其它答案标号。回答非选择题时，将答案写在答题卡上。写在本试卷上无效。
+          %     \item 考试结束后，将本试卷和答题卡一并交回。
+          %           请认真核对监考员在答题卡上所粘贴的条形码上的姓名、准考证号与您本人是否相符。
+          %   \end{enumerate}
+
+          %%   ====================================================================
+          %%   —————————————————————————————正文开始———————————————————————————————
+          %%   ====================================================================
+
+          %           \section{练习题}
+
+\begin{enumerate}[leftmargin=*,itemsep=0.2em,topsep=0pt,resume]%\setcounter{enumi}{12}
+	\item \(\triangle ABC\)中，\(AB=AC, \angle B=30^\degree\),点\(P\)在\(BC\)边上运动（\(P\)不与\(B,C\)重合），连接\(AP\)作\(\angle APQ= \angle B,PQ\)交\(AB\)于点\(Q\).
+        \begin{enumerate}[leftmargin=*,label=(\arabic*)]
+          \item 如图(a)，当\(PQ \parallel CA\)时，判断\(\triangle APB\)的形状并说明理由；
+          \item 在点\(P\)的运动过程中，\(\triangle APQ\)的形状可以是等腰三角形吗？若可以，请求出\(\angle BQP\)的度数，若不可以，请说明理由。
+        \end{enumerate}
+        \begin{figure}[ht]
+          \raggedleft
+          \begin{subfigure}{0.3\textwidth}
+            \centering
+            \begin{asy}
+              % unitsize(1cm);
+              size(5cm);
+
+              // 定义基础参数
+              real a = 10;
+              real h = a / sqrt(3);
+
+              // 根据几何推导精确定义各个点的坐标
+              pair A = (0, h);
+              pair B = (-a, 0);
+              pair C = (a, 0);
+              pair P = (a/3, 0);
+              pair Q = (-a/3, 2*h/3);
+
+              // 定义全局的黑色画笔
+              pen p = black + linewidth(1.0);
+
+              // 1. 绘制大三角形 ABC 和内部线段
+              draw(A--B--C--cycle, p);
+              draw(A--P, p);
+              draw(P--Q, p);
+
+              // 2. 添加文本标签
+              label("$A$", A, N);
+              label("$B$", B, W);
+              label("$C$", C, E);
+              label("$P$", P, S);
+              label("$Q$", Q, NW);
+            \end{asy}
+            \caption{}
+          \end{subfigure}
+          \quad
+          % \hfill
+          \begin{subfigure}{0.3\textwidth}
+            \centering
+            \begin{asy}
+              size(5cm);
+
+              // 定义基础参数
+              real a = 10;
+              real h = a / sqrt(3);
+
+              // 根据几何推导精确定义各个点的坐标
+              pair A = (0, h);
+              pair B = (-a, 0);
+              pair C = (a, 0);
+              pair P = (h*tan(pi/12), 0);
+              pair Q = (-a/3, 2*h/3);
+
+              // 定义全局的黑色画笔
+              pen p = black + linewidth(1.0);
+
+              // 1. 绘制大三角形 ABC 和内部线段
+              draw(A--B--C--cycle, p);
+              draw(A--P, p);
+              draw(P--Q, p);
+
+              // 2. 添加文本标签
+              label("$A$", A, N);
+              label("$B$", B, W);
+              label("$C$", C, E);
+              label("$P$", P, S);
+              label("$Q$", Q, NW);
+            \end{asy}
+            \caption{}
+          \end{subfigure}
+          \quad
+          \begin{subfigure}{0.3\textwidth}
+            \centering
+            \begin{asy}
+              size(5cm);
+
+              // 定义基础参数
+              real a = 10;
+              real h = a / sqrt(3);
+
+              // 根据几何推导精确定义各个点的坐标
+              pair A = (0, h);
+              pair B = (-a, 0);
+              pair C = (a, 0);
+              pair P = (-h*tan(pi/6), 0);
+              pair Q = (-a/3, 2*h/3);
+
+              // 定义全局的黑色画笔
+              pen p = black + linewidth(1.0);
+
+              // 1. 绘制大三角形 ABC 和内部线段
+              draw(A--B--C--cycle, p);
+              draw(A--P, p);
+              draw(P--Q, p);
+
+              // 2. 添加文本标签
+              label("$A$", A, N);
+              label("$B$", B, W);
+              label("$C$", C, E);
+              label("$P$", P, S);
+              label("$Q$", Q, NW);
+            \end{asy}
+            \caption{}
+          \end{subfigure}
+        \end{figure}
+        【提示】：可以从两个情况去考虑，第一种情况是\(PA=PQ\)，如图(b)，此时\(\angle PAQ=\angle PQA=\frac{180-30}{2}=75^\degree\)；第二种情况是\(QA=QP\)，如图(c)，此时\(\angle QAP=\angle QPA=30^\degree\)。两种情况下，\(\angle BQP\)都容易求出。
+        \vspace{5cm}
+  \item 如图(a)，在\(\triangle ABC\)中，\(CA=CB,\angle ACB=90^\degree\)，点\(D\)是\(AC\)的中点，连接\(BD\)，过点\(A\)作\(AE \perp BD\)交\(BD\)的延长线于点\(E\)，过点\(C\)作\(CF\perp BD\)于点\(F\).
+        \begin{enumerate}[leftmargin=*,,label=(\arabic*)]
+          \item 求证：\(\angle EAD=\angle CBD\);
+          \item 求证：\(BF=2AE\);
+          \item 如图(b),将\(\triangle BCF\)沿\(BC\)翻折得到\(\triangle BCG\)，连接\(AG\)，请猜想并证明线段\(AG\)和\(AB\)的数量关系。
+        \end{enumerate}
+        \begin{figure}[htbp]
+          \raggedleft
+          \begin{subfigure}{0.3\textwidth}
+            \centering
+            \begin{asy}
+              defaultpen(fontsize(10pt));
+              size(5cm);
+              // import markers;
+              import geometry;
+
+              // 定义基础参数
+              real a = 5;
+              real h = a;
+
+              // 根据几何推导精确定义各个点的坐标
+              pair C = (0, h);
+              pair B = (a, 0);
+              pair A = (-a, 0);
+              pair D = (-a / 2, a / 2);
+              pair E = (-4, 3);
+              pair F = (-1, 2);
+
+              // 定义全局的黑色画笔
+              pen p = black + linewidth(1.0);
+
+              // 1. 绘制大三角形 ABC 和内部线段
+              draw(A-- B-- C-- cycle, p);
+              draw(A-- E, p);
+              draw(C-- F, p);
+              draw(B-- E, p);
+
+              markrightangle(A, E, B, size=2mm);
+              markrightangle(C, F, E, size=2mm);
+              markrightangle(D, C, B, size=2mm);
+
+              // 2. 添加文本标签
+              label("$A$", A, S);
+              label("$B$", B, S);
+              label("$C$", C, N);
+              label("$D$", D, N);
+              label("$E$", E, NW);
+              label("\(F\)", F, S);
+            \end{asy}
+            \caption{}
+          \end{subfigure}
+          \quad
+          \begin{subfigure}{0.3\textwidth}
+            \centering
+            \begin{asy}
+              defaultpen(fontsize(10pt));
+              size(5cm);
+              import geometry;
+
+              // 定义基础参数
+              real a = 5;
+              real h = a;
+
+              // 根据几何推导精确定义各个点的坐标
+              pair C = (0, h);
+              pair B = (a, 0);
+              pair A = (-a, 0);
+              pair D = (-a/2, a/2);
+              pair E = (-4, 3);
+              pair F = (-1, 2);
+              pair G = (3, 6);
+
+              // 定义全局的黑色画笔
+              pen p = black + linewidth(1.0);
+
+              // 1. 绘制大三角形 ABC 和内部线段
+              draw(A--B--C--cycle, p);
+              draw(A--E, p);
+              draw(C--F, p);
+              draw(B--E, p);
+              draw(C--G, p);
+              draw(B--G, p);
+              draw(A--G, p);
+
+              markrightangle(A, E, B, size=2mm);
+              markrightangle(C, F, E, size=2mm);
+              markrightangle(D, C, B, size=2mm);
+              markrightangle(C, G, B, size=2mm);
+
+              // 2. 添加文本标签
+              label("$A$", A, S);
+              label("$B$", B, S);
+              label("$C$", C, N);
+              label("$D$", D, N);
+              label("$E$", E, NW);
+              label("\(F\)",F,S);
+              label("\(G\)",G,N);
+            \end{asy}
+            \caption{}
+          \end{subfigure}
+          \quad
+          \begin{subfigure}{0.3\textwidth}
+            \centering
+            \begin{asy}
+              defaultpen(fontsize(10pt));
+              size(5cm);
+              import geometry;
+
+              // 定义基础参数
+              real a = 5;
+              real h = a;
+
+              // 根据几何推导精确定义各个点的坐标
+              pair C = (0, h);
+              pair B = (a, 0);
+              pair A = (-a, 0);
+              pair D = (-a/2, a/2);
+              pair E = (-4, 3);
+              pair F = (-1, 2);
+              pair G = (3, 6);
+              pair M = (2, 1);
+
+              // 定义全局的黑色画笔
+              pen p = black + linewidth(1.0);
+
+              // 1. 绘制大三角形 ABC 和内部线段
+              draw(A--B--C--cycle, p);
+              draw(A--E, p);
+              draw(C--F, p);
+              draw(B--E, p);
+              draw(C--G, p);
+              draw(B--G, p);
+              draw(A--G, p);
+              draw(A--M, dashed);
+              draw(C--M, dashed);
+
+              markrightangle(A, E, B, size=2mm);
+              markrightangle(C, F, E, size=2mm);
+              markrightangle(D, C, B, size=2mm);
+              markrightangle(C, G, B, size=2mm);
+
+              // 2. 添加文本标签
+              label("$A$", A, S);
+              label("$B$", B, S);
+              label("$C$", C, N);
+              label("$D$", D, N);
+              label("$E$", E, NW);
+              label("\(F\)",F,S);
+              label("\(G\)",G,N);
+              label("\(M\)",M,N);
+            \end{asy}
+            \caption{}
+          \end{subfigure}
+        \end{figure}
+        【提示】：对于(2)，因为\(\triangle CFB \sim \triangle DCB\)，故\(BF=2CF=2AE\)； 对于(3)，如图(c)，设\(M\)为\(BF\)的中点，连接\(CM, AM\)，由于\(\triangle CDF \sim \triangle BDC\)，故\(CF=2DF=2DE=AE\)，可知\(AE=EF=FM\)，故\(\triangle AEM \cong \triangle CFB\)，因此有\(\angle AME=\angle CBF=\angle DCF\)，由于\(\triangle CFM\)为等腰直角三角形，因此\(\angle ACM=\angle AMC\)，即\(AC=AM\)，且\(\angle AMB=\angle ACG\)(两角均为\(180^\circ-\angle AME\))，故\(\triangle ACG\cong \triangle AMB \)，因此有\(AG=AB\).
+  \item 在等边三角形\(ABC\)中，\(D\)为射线\(CB\)上的一点，连接\(AD\)，点\(B\)关于直线\(AD\)的对称点为\(E\)，连接\(AE,DE,CE\)。
+        \begin{enumerate}[leftmargin=*,,label=(\arabic*)]
+          \item 如图(a)，点\(D\)在线段\(BC\)上，\(\angle BAD=15^\circ\)，求\(\angle BCE\)的度数。
+          \item 射线\(AD,CE\)交于点\(F\)，过点\(D\)作\(DG \parallel AC\)交射线\(AB\)于点\(G\)，连接\(GE\)交\(AD\)于点\(H\)。
+                \begin{enumerate}[leftmargin=*,,label=(\roman*)]
+                  \item 如图(b)，点\(D\)在线段\(BC\)上，求证：\(\triangle AGH \cong \triangle CDF\)；
+                  \item 点\(D\)在线段\(CB\)的延长线上，用等式表示线段\(AH,FH\)以及\(CE\)之间的数量关系，并说明理由。
+                \end{enumerate}
+        \end{enumerate}
+        \begin{figure}[htbp]
+          \raggedleft
+          \begin{subfigure}{0.26\textwidth}
+            \centering
+            \begin{asy}
+              defaultpen(fontsize(10pt));
+              size(5cm);
+              // import geometry;
+
+              pen p = black + linewidth(1.0);
+
+              real a = 5;
+              real h = 5 * tan(pi / 3);
+
+              pair A = (0, h);
+              pair B = (-a, 0);
+              pair C = (a, 0);
+
+              pair Z = rotate(15, A) * B;
+              pair D = extension(A, Z, C, B);
+              pair E = reflect(A, D) * B;
+
+              draw(A-- B-- C-- cycle, p);
+              draw(A-- D, p);
+              draw(A-- E, p);
+              draw(D-- E, p);
+              draw(C-- E, p);
+
+              label("$A$", A, N);
+              label("$B$", B, S);
+              label("$C$", C, S);
+              label("$D$", D, S);
+              label("$E$", E, S);
+            \end{asy}
+            \caption{}
+          \end{subfigure}
+          \quad
+          \begin{subfigure}{0.26\textwidth}
+            \centering
+            \begin{asy}
+              defaultpen(fontsize(10pt));
+              size(5cm);
+              import geometry;
+
+              pen p = black + linewidth(1.0);
+              pen pd = black + linewidth(0.7) + dashed;
+
+              real a = 5;
+              real h = 5 * tan(pi / 3);
+
+              pair A = (0, h);
+              pair B = (-a, 0);
+              pair C = (a, 0);
+              line AC = line(A, C);
+              segment AB = segment(A, B);
+
+              pair D = (-(1 + unitrand()), 0);
+              pair E = reflect(A, D) * B;
+              line L1 = parallel(D, AC);
+              pair G = intersectionpoint(L1, AB);
+              pair F = intersectionpoint(line(A, D), line(C, E));
+              pair H = intersectionpoint(line(A, D), line(G, E));
+              circle myCircle = circle(A, D, C);
+
+              draw(A-- B-- C-- cycle, p);
+              draw(A-- D, p);
+              draw(A-- E, p);
+              draw(D-- E, p);
+              draw(C-- E, p);
+              draw(D-- G, p);
+              draw(E-- G, p);
+              draw(D-- F, p);
+              draw(E-- F, p);
+              draw(myCircle, pd);
+
+              label("$A$", A, N);
+              label("$B$", B, S);
+              label("$C$", C, S);
+              label("$D$", D, SW);
+              label("$E$", E, S);
+              label("$F$", F, S);
+              label("$G$", G, NW);
+              label("$H$", H, NE);
+            \end{asy}
+            \caption{}
+          \end{subfigure}
+          \quad
+          \begin{subfigure}{0.38\textwidth}
+            \centering
+            \begin{asy}
+              defaultpen(fontsize(10pt));
+              size(5cm);
+              import geometry;
+
+              pen p = black + linewidth(1.0);
+              pen pd = black + linewidth(0.7) + dashed;
+
+              real a = 5;
+              real h = 5 * tan(pi / 3);
+
+              pair A = (0, h);
+              pair B = (-a, 0);
+              pair C = (a, 0);
+              line AC = line(A, C);
+              line AB = line(A, B);
+
+              pair D = (-(a + 5 + unitrand()), 0);
+              pair E = reflect(A, D) * B;
+              line L1 = parallel(D, AC);
+              pair G = intersectionpoint(L1, AB);
+              pair F = intersectionpoint(line(A, D), line(C, E));
+              pair H = intersectionpoint(line(A, D), line(G, E));
+              circle myCircle = circle(A, D, C);
+
+              draw(A-- B-- C-- cycle, p);
+              draw(A-- D, p);
+              draw(B-- D, p);
+              draw(A-- E, p);
+              draw(D-- E, p);
+              draw(C-- E, p);
+              draw(D-- G, p);
+              draw(B-- G, p);
+              draw(E-- G, p);
+              draw(myCircle, pd);
+
+              label("$A$", A, N);
+              label("$B$", B, SE);
+              label("$C$", C, SE);
+              label("$D$", D, SW);
+              label("$E$", E, W);
+              label("$F$", F, S);
+              label("$G$", G, SW);
+              label("$H$", H, SE);
+            \end{asy}
+            \caption{}
+          \end{subfigure}
+        \end{figure}
+        【提示】：针对于(2).(i)，已知\(DG\parallel AC\)，故\(\angle BDG=60^\circ=\angle B\)，所以\(\triangle BDG\)为等边三角形，故\(AG=DC\)。由于\(E\)为\(B\)关于直线\(AD\)的对称点，所以\(GD=BD=DE\)。又知\(\angle BAC+\angle CDG=180^\circ\)，所以\(A,G,D,C\)四点共圆，又设\(\angle BAD=\angle DAE=\alpha\)，在等腰三角\(ACE\)中，有\(\angle CAE=60^\circ-2\alpha,\angle ACE=\angle AEC=60^\circ+\alpha\)，可知\(\angle DCF=\alpha, \angle F=60^\circ\)。由于\(\angle DCE=\angle DAE=\alpha\)，因此\(A,D,E,C\)四点共圆，也即\(A,C,D,E,G\)五点共圆，故\(\angle GAD=\angle GED=\angle DGE=\angle DCE=\alpha\)，所以\(\angle AGH=180^\circ-60^\circ-\alpha=120^\circ-\alpha\)，而\(\angle CDF=\angle DAC+\angle ACD=60^\circ-\alpha+60^\circ=120^\circ-\alpha\)，所以\(\angle AGH=\angle CDF\)，从而根据\(ASA\)判断定理可知\(\triangle AGH \cong \triangle CDF\)。\\
+        针对于(2).(ii)，同理可知\(\triangle BDG\)为等边三角形，故\(DC=DB+BC=GB+BA=GA\)，又由(2).(i)知\(\angle HAG=\angle FCD\)，又知道\(\angle EHF=\angle EDH+\angle DEH=\angle ECA+\angle ECD=60^\circ=\angle GAC=\angle GEC\)，故\(\triangle EHF\)也是等边三角形，即\(FH=EF\)，且\(\angle DFC=\angle GHA=120^\circ\)，因此根据\(AAS\)判断定理可知\(\triangle GHA \cong \triangle DFC\)，故\(CF=AH\)。综上可知\(CE=CF+EF=AH+FH\)。
+\end{enumerate}
+
+
+\end{document}
+
+%%% Local Variables:
+%%% TeX-engine: xetex
+%%% TeX-master: t
+%%% End:
+
+          %           LocalWords:  xetex markrightangle
